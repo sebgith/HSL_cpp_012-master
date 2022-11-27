@@ -1,3 +1,4 @@
+
 #include <Arduino.h>
 #include <led.h>
 #include <rpm.h>
@@ -13,6 +14,8 @@
 #include <gpsFunctions.h>
 #include <adcFunctions.h>
 #include <icControl.h>
+#include <EEPROM.h>
+#include <wifi_webInterface.h>
 #include <globalObjAndVar.h>
 
 unsigned long currentMillis;
@@ -44,6 +47,9 @@ void setup()
   digitalWrite(icOutputpin_3,  LOW);
   digitalWrite(icOutputpin_4,  LOW);
 
+
+  setupWebInterface(); // Browser UI Startet normalerweise auch in serialmonitor mit 115000
+
   wifi_init(); // start wifi
 
   reconnectMqttTb(); // start thingsboard connection
@@ -51,10 +57,13 @@ void setup()
   gpsSerial.begin(9600); // seriellen Teilnehmer erstellen
 
   setupAdcConfig();
+  
+  //UpdateVariableswithUserInput(); // Müssen schauen wo wir diese funktion ausführen
 }
 
 void loop()
 {
+  iotWebConf.doLoop(); // UI
   currentMillis = millis();
   durationLoop = currentMillis - previousMillisLoop;
   previousMillisLoop = currentMillis;
@@ -74,7 +83,7 @@ void loop()
   //-----------------time since last measurement------------
   adcReadAndCalc();
 
-  checkSDavailable();
+ // checkSDavailable();
 
   getGpsData(); // jede loop????? eher alle 5 Sekunden??
 

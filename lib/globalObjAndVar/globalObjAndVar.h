@@ -1,13 +1,12 @@
 #ifndef globals_h
 #define globals_h
-
+#include <adcClass.h> // ausgeschnitten von globalObjAndVar.ccp
 #include <adcFunctions.h>
 #include <rpm.h>
 #include <led.h>
 #include <Adafruit_ADS1X15.h>
 
 extern Adafruit_ADS1115 ads;
-
 extern adcInputCalc adcObj_0;
 extern adcInputCalc adcObj_1;
 extern adcInputCalc adcObj_2;

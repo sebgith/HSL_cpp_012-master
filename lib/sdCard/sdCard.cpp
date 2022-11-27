@@ -18,7 +18,7 @@ bool NoSDcardOld = false; // state if SD is insert previous cycle
 int timeSinceSDstateChanged = 0;  // duration since SD state has changed
 unsigned long lastSDstateChange;  // time when SD state has changed
 int SDstateChangeAccepted = 3000; // wait 3 seconds before accept SD card change
-
+String getTimeStamp();
 boolean sdCardReady()
 {
     NoSDcard = digitalRead(checkSdInsertPin); // 1 = no SD; 0 = SD insert

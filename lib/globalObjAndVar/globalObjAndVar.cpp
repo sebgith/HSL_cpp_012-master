@@ -1,6 +1,6 @@
 #include <globalObjAndVar.h>
 #include <Adafruit_ADS1X15.h>
-#include <adcClass.h>
+//#include <adcClass.h>
 #include <rpm.h>
 #include <led.h>
 #include <parameterConfig.h>
