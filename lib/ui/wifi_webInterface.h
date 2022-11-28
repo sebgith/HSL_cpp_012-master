@@ -178,15 +178,20 @@ void setupWebInterface()  // Funktion muss einmal im setup aufgerufen werden
   server.onNotFound([](){ iotWebConf.handleNotFound(); });
   Serial.println("Ready.");
 }
-/*
+
  void UpdateVariableswithUserInput()
  {
+
+
 
 physicalMinAdc_0 = atoi(physicalMinAdc0Value);  // unterer physikalischer Messwert
 physicalMaxAdc_0 = atoi(physicalMaxAdc0Value); // oberer physikalischer Messwert
 minCurrentAdc_0 = atoi(minCurrentAdc0Value);   // unterer Strommesswert [mA]
 maxCurrentAdc_0 = atoi(maxCurrentAdc0Value);  // oberer Strommesswert [mA]
 resistorAdc_0 = atoi(resistorAdc0Value);  // Widerstandswert in Ohm
+
+Serial.println(physicalMinAdc_0);
+Serial.print(physicalMaxAdc_0);
 
 physicalMinAdc_1 = atoi(physicalMinAdc1Value);  // unterer physikalischer Messwert
 physicalMaxAdc_1 = atoi(physicalMaxAdc1Value); // oberer physikalischer Messwert
@@ -207,7 +212,7 @@ maxCurrentAdc_3 = atoi(maxCurrentAdc3Value);  // oberer Strommesswert [mA]
 resistorAdc_3 = atoi(resistorAdc3Value);  // Widerstandswert in Ohm
 
 }
-*/
+
 
  
 
@@ -242,6 +247,7 @@ void handleRoot()
 void configSaved()
 {
   Serial.println("Configuration was updated.");
+  UpdateVariableswithUserInput();
 }
 
 bool formValidator(iotwebconf::WebRequestWrapper* webRequestWrapper)

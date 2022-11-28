@@ -7,7 +7,7 @@
 #include <parameterConfig.h>
 #include <Adafruit_ADS1X15.h>
 #include <WifiUdp.h>
-#include <wifiFunctions.h>
+//#include <wifiFunctions.h>
 #include <WiFi.h>
 #include <mqtt.h>
 // #include <SoftwareSerial.h> - if compiles -> can be removed
@@ -50,7 +50,7 @@ void setup()
 
   setupWebInterface(); // Browser UI Startet normalerweise auch in serialmonitor mit 115000
 
-  wifi_init(); // start wifi
+ // wifi_init(); // start wifi
 
   reconnectMqttTb(); // start thingsboard connection
 
@@ -58,17 +58,19 @@ void setup()
 
   setupAdcConfig();
   
-  //UpdateVariableswithUserInput(); // Müssen schauen wo wir diese funktion ausführen
+  UpdateVariableswithUserInput(); // Müssen schauen wo wir diese funktion ausführen
 }
 
 void loop()
 {
   iotWebConf.doLoop(); // UI
+
+
   currentMillis = millis();
   durationLoop = currentMillis - previousMillisLoop;
   previousMillisLoop = currentMillis;
-  Serial.print("Time since last measurement: ");
-  Serial.println(durationLoop);
+  //Serial.print("Time since last measurement: ");
+  //Serial.println(durationLoop);
 
   currentMillis = millis();
   if (currentMillis - previousMillisRpm >= RpmCalcInterval) // update rpm every second (RpmCalcInterval)
@@ -95,7 +97,7 @@ void loop()
     previousMillisPublishMqtt = currentMillis;
     if (WiFi.status() != WL_CONNECTED) // check wifi connection
     {
-      wifi_init();
+      //wifi_init();
     }
     publishMqtt(durationLoop);
   }
